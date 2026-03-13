@@ -8,10 +8,10 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
 from pages.cart_page import CartPage
-from utils.config import USERNAME, PASSWORD
+from utils.config import USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, POSTAL_CODE
 
 
-def test_checkout_navigation():
+def test_checkout_completion():
 
     with sync_playwright() as p:
 
@@ -31,5 +31,11 @@ def test_checkout_navigation():
         inventory_page.open_cart()
 
         assert cart_page.is_cart_page_loaded()
+
+        cart_page.click_checkout()
+        cart_page.fill_checkout_information(FIRST_NAME, LAST_NAME, POSTAL_CODE)
+        cart_page.finish_checkout()
+
+        assert cart_page.is_checkout_complete()
 
         browser.close()
