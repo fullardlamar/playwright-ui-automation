@@ -1,21 +1,35 @@
-from playwright.sync_api import Page
+import os
+import sys
 
-def test_checkout_navigation(page: Page):
-    page.goto("https://www.saucedemo.com/")
-    
-    # login
-    page.fill("#user-name", "standard_user")
-    page.fill("#password", "secret_sauce")
-    page.click("#login-button")
+from playwright.sync_api import sync_playwright
 
-    # verify inventory page loaded
-    assert page.locator(".inventory_list").is_visible()
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-    # click first item
-    page.click(".inventory_item:first-child button")
+from pages.login_page import LoginPage
+from pages.inventory_page import InventoryPage
+from pages.cart_page import CartPage
+from utils.config import USERNAME, PASSWORD
 
-    # go to cart
-    page.click(".shopping_cart_link")
 
-    # verify cart page
-    assert page.locator(".cart_list").is_visible()
+def test_checkout_navigation():
+
+    with sync_playwright() as p:
+
+        browser = p.chromium.launch(headless=False)
+        page = browser.new_page()
+
+        login_page = LoginPage(page)
+        inventory_page = InventoryPage(page)
+        cart_page = CartPage(page)
+
+        login_page.navigate()
+        login_page.login(USERNAME, PASSWORD)
+
+        assert inventory_page.is_inventory_page_loaded()
+
+        inventory_page.add_backpack_to_cart()
+        inventory_page.open_cart()
+
+        assert cart_page.is_cart_page_loaded()
+
+        browser.close()
