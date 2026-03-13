@@ -1,46 +1,32 @@
 # Playwright UI Automation Framework
 
-This project demonstrates a UI automation testing framework built with:
+This project is a UI automation testing framework built with **Python**, **Playwright**, and **PyTest** using the **Page Object Model (POM)** design pattern.
 
-- Python
-- Playwright
-- PyTest
-- Page Object Model (POM)
+It automates core user workflows on the Sauce Demo sample application and demonstrates a structured test automation framework suitable for portfolio and resume use.
 
-The project automates login functionality on a sample web application using a structured automation architecture.
+## Features
+
+- Automated login validation
+- Automated add-to-cart flow
+- Automated end-to-end checkout completion flow
+- Reusable page objects for maintainability
+- Centralized test data in a configuration file
+- Version controlled with Git and GitHub
 
 ## Project Structure
 
+```text
 playwright-ui-automation
-│
 ├── pages
-│   └── login_page.py
-│
+│   ├── __init__.py
+│   ├── login_page.py
+│   ├── inventory_page.py
+│   └── cart_page.py
 ├── tests
-│   └── test_login.py
-│
+│   ├── test_login.py
+│   └── test_checkout.py
 ├── utils
+│   ├── __init__.py
 │   └── config.py
-
-## Technologies Used
-
-Python  
-Playwright  
-PyTest  
-VS Code  
-Git & GitHub  
-
-## Test Implemented
-
-Login automation test for:
-
-https://www.saucedemo.com
-
-The test validates that a user can successfully log into the application and reach the inventory page.
-
-## Future Improvements
-
-Add Add-To-Cart automation tests  
-Add Checkout automation tests  
-Add Playwright fixtures  
-Add GitHub Actions CI pipeline  
+├── .gitignore
+└── README.md
