@@ -2,7 +2,15 @@
 
 This project is a UI automation testing framework built with **Python**, **Playwright**, and **PyTest** using the **Page Object Model (POM)** design pattern.
 
-It automates core user workflows on the Sauce Demo sample application and demonstrates a structured test automation framework suitable for portfolio and resume use.
+It automates core user workflows on the Sauce Demo sample application and demonstrates a structured test automation framework suitable for portfolio, resume, and LinkedIn use.
+
+## GitHub Repository
+
+https://github.com/fullardlamar/playwright-ui-automation
+
+## Application Under Test
+
+Sauce Demo: https://www.saucedemo.com/
 
 ## Features
 
